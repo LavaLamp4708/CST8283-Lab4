@@ -9,8 +9,8 @@
        DATA DIVISION.
        FILE SECTION.
        WORKING-STORAGE SECTION.
-       01 WS-EOF PIC 9(1).
-       01 WS-PRICE PIC $$$$9.99.
+       01 WS-EOF PIC 9(1) VALUE 0.
+       01 WS-PRICE PIC $$,$$9.99.
        01 WS-TOTAL PIC 9(5)V99.
 
        01 WS-CATEGORY PIC A(1).
@@ -36,35 +36,37 @@
            DISPLAY "Youth symbol:     Y".
            DISPLAY "Child symbol:     C".
            DISPLAY "Military symbol:  M".
+           PERFORM ENTER-TICKETS UNTIL WS-EOF=1.
+           STOP RUN.
+       ENTER-TICKETS.
            DISPLAY SPACES.
-           DISPLAY "ENTER SYMBOL: " WITH NO ADVANCING
+           DISPLAY "ENTER SYMBOL: ".
            ACCEPT WS-CATEGORY.
            IF FAMILY
                MOVE WS-FAMILY-PRICE TO WS-PRICE
                ADD WS-FAMILY-PRICE TO WS-TOTAL
-               DISPLAY "PRICE: " WS-PRICE
+               DISPLAY "PRICE ADDED: " WS-PRICE
            ELSE IF ADULT
                MOVE WS-ADULT-PRICE TO WS-PRICE
                ADD WS-ADULT-PRICE TO WS-TOTAL
-               DISPLAY "PRICE: " WS-PRICE
+               DISPLAY "PRICE ADDED: " WS-PRICE
            ELSE IF STUDENT
                MOVE WS-STUDENT-PRICE TO WS-PRICE
                ADD WS-STUDENT-PRICE TO WS-TOTAL
-               DISPLAY "PRICE: " WS-PRICE
+               DISPLAY "PRICE ADDED: " WS-PRICE
            ELSE IF YOUTH
                MOVE WS-YOUTH-PRICE TO WS-PRICE
                ADD WS-YOUTH-PRICE TO WS-TOTAL
-               DISPLAY "PRICE: " WS-PRICE
+               DISPLAY "PRICE ADDED: " WS-PRICE
            ELSE IF CHILD
-               DISPLAY "PRICE: FREE"
+               DISPLAY "PRICE ADDED: FREE"
            ELSE IF MILITARY
                MOVE WS-MILITARY-PRICE TO WS-PRICE
                ADD WS-MILITARY-PRICE TO WS-TOTAL
-               DISPLAY "PRICE: " WS-PRICE
+               DISPLAY "PRICE ADDED: " WS-PRICE
            ELSE
-               MOVE 1 TO WS-EOF
-               MOVE WS-TOTAL TO WS-PRICE.
-               DISPLAY "Total: " WS-PRICE.
+               MOVE WS-TOTAL TO WS-PRICE
+               DISPLAY "TOTAL: " WS-PRICE
+               MOVE 1 TO WS-EOF.
 
-           STOP RUN.
        END PROGRAM LAB4-WITH-88.

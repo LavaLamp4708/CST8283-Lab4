@@ -61,8 +61,8 @@
                ADD WS-MILITARY-PRICE TO WS-TOTAL
                DISPLAY "PRICE ADDED: " WS-PRICE
            ELSE
-               MOVE 1 TO WS-EOF
                MOVE WS-TOTAL TO WS-PRICE
-               DISPLAY "TOTAL: " WS-PRICE.
+               DISPLAY "TOTAL: " WS-PRICE
+               MOVE 1 TO WS-EOF.
 
        END PROGRAM LAB4-WITH-NO-88.
