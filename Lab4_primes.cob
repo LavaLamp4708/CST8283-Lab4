@@ -32,7 +32,7 @@
                VARYING WS-CHECK-IF-PRIME
                    FROM 1
                    BY 1
-                   UNTIL WS-CHECK-IF-PRIME = WS-NUMBER-INPUT.
+                   UNTIL WS-CHECK-IF-PRIME > WS-NUMBER-INPUT.
            PERFORM DISPLAY-PRIMES-SUM.
            STOP RUN.
        GET-USER-INPUT.
